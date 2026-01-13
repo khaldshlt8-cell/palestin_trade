@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>شركة فلسطين للتجارة الجملة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>شركة فلسطين للتجارة الجملة</h1>
+    <p>نخدمكم بأفضل الأسعار</p>
+</header>
+
+<section class="products">
+    <h2>🛒 المنتجات</h2>
+
+    <form id="orderForm">
+        <table>
+            <tr>
+                <th>اختيار</th>
+                <th>الصنف</th>
+                <th>السعر (شيكل)</th>
+                <th>الكمية</th>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="item" data-price="35"></td>
+                <td>سكر 10 كغم</td>
+                <td>35</td>
+                <td><input type="number" min="1" value="1"></td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="item" data-price="28"></td>
+                <td>أرز 5 كغم</td>
+                <td>28</td>
+                <td><input type="number" min="1" value="1"></td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="item" data-price="22"></td>
+                <td>زيت نباتي 3 لتر</td>
+                <td>22</td>
+                <td><input type="number" min="1" value="1"></td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" class="item" data-price="55"></td>
+                <td>طحين 25 كغم</td>
+                <td>55</td>
+                <td><input type="number" min="1" value="1"></td>
+            </tr>
+        </table>
+
+        <div class="client-info">
+            <label>اسم الزبون:</label>
+            <input type="text" required>
+
+            <label>طريقة الدفع:</label>
+            <select>
+                <option>الدفع نقداً عند الاستلام</option>
+                <option>بطاقة بنكية</option>
+            </select>
+
+            <button type="button" onclick="calculateTotal()">حساب المجموع</button>
+
+            <h3 id="total">المجموع: 0 شيكل</h3>
+
+            <button type="submit">تأكيد الطلب</button>
+        </div>
+    </form>
+</section>
+
+<section class="branches">
+    <h2>🏢 فروع الشركة</h2>
+    <ul>
+        <li>غزة: 8:00 صباحاً – 5:00 مساءً</li>
+        <li>خان يونس: 8:30 صباحاً – 4:30 مساءً</li>
+        <li>رفح: 9:00 صباحاً – 5:00 مساءً</li>
+    </ul>
+</section>
+
+<footer>
+    <p>دمتم بخير</p>
+    <p>مع تحيات الدكتور أحمد أبومسامح</p>
+</footer>
+
+<script>
+function calculateTotal() {
+    let total = 0;
+    let rows = document.querySelectorAll("table tr");
+
+    rows.forEach((row, index) => {
+        if (index === 0) return;
+        let checkbox = row.querySelector("input[type='checkbox']");
+        let quantity = row.querySelector("input[type='number']").value;
+        if (checkbox.checked) {
+            total += checkbox.dataset.price * quantity;
+        }
+    });
+
+    document.getElementById("total").innerText = "المجموع: " + total + " شيكل";
+}
+</script>
+
+</body>
+</html>
